@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 @onready var position_label: Label = $HUD/HUDArea/PositionLabel
-@onready var velocity_label: Label = $HUD/HUDArea/VelocityLabel
+@onready var fps_label: Label = $HUD/HUDArea/FPSLabel
+
 
 @onready var camera: Camera3D = $CameraPivot/PitchPivot/Camera3D
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_player_movment(delta)
-	_set_hud() 
+	_set_hud(delta) 
 	
 	if Input.is_action_just_pressed("restart"):
 		restart_scene()
@@ -75,6 +76,6 @@ func _apply_gravity(delta: float) -> void:
 func restart_scene():
 	get_tree().reload_current_scene()
 
-func _set_hud() -> void:
+func _set_hud(delta) -> void:
 	position_label.text = str(round(position.x * 100)/100.0) + ", " + str(round(position.y * 100)/100.0) + ", " + str(round(position.z * 100)/100.0)
-	velocity_label.text = str(round(velocity.x * 100)/100.0) + ", " + str(round(velocity.y * 100)/100.0) + ", " + str(round(velocity.z * 100)/100.0)
+	fps_label.text = str(round(1/delta)) + " fps"

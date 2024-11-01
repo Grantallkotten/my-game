@@ -47,7 +47,7 @@ layout_mode = 1
 offset_right = 207.0
 offset_bottom = 74.0
 
-[node name="VelocityLabel" type="Label" parent="HUD/HUDArea"]
+[node name="FPSLabel" type="Label" parent="HUD/HUDArea"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -55,3 +55,4 @@ anchor_right = 1.0
 offset_left = -207.0
 offset_bottom = 74.0
 grow_horizontal = 0
+horizontal_alignment = 2
