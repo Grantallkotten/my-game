@@ -9,7 +9,6 @@ extends CharacterBody3D
 
 @export_range(0.0, 1.0) var mouse_sensitivity: float = 0.25
 
-
 @export var walk_speed: float = 10.0
 @export var walk_acceleration: float = 20.0
 @export var jump_strength: float = 20.0
