@@ -15,6 +15,7 @@ sky_material = SubResource("ProceduralSkyMaterial_lila5")
 background_mode = 2
 sky = SubResource("Sky_h21ym")
 tonemap_mode = 2
+sdfgi_enabled = true
 glow_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_albedo = Color(0.901961, 1, 0.945098, 1)
@@ -36,7 +37,8 @@ albedo_color = Color(0.34902, 0.34902, 0.380392, 1)
 environment = SubResource("Environment_6nqyc")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 10, 0)
+light_color = Color(1, 1, 0.913725, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_wtyqn")]
