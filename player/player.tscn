@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://biqw058ei5kai"]
+[gd_scene load_steps=6 format=3 uid="uid://biqw058ei5kai"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_gdt4l"]
+[ext_resource type="PackedScene" uid="uid://cchojakcivxdf" path="res://player/player_wepon/player_wepon.tscn" id="2_5u0em"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3bcdp"]
 
@@ -13,12 +14,14 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_gdt4l")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="PlayerMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_3bcdp")
 surface_material_override/0 = SubResource("StandardMaterial3D_ph5yk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_7r8a2")
+
+[node name="PlayerWepon" parent="." instance=ExtResource("2_5u0em")]
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.973849, 0.227195, 0, -0.227195, 0.973849, 0, 0, 0)

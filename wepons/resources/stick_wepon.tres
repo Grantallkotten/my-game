@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Wepons" load_steps=3 format=3 uid="uid://ce8h13imie1qp"]
+
+[ext_resource type="ArrayMesh" uid="uid://b8ushk8p7dev7" path="res://wepons/meshes/stick.res" id="1_16aql"]
+[ext_resource type="Script" path="res://wepons/wepon_resource.gd" id="1_i1ln1"]
+
+[resource]
+script = ExtResource("1_i1ln1")
+name = "Stick"
+position = Vector3(0.8, 0.2, -1)
+rotation = Vector3(0, 90, 0)
+scale = Vector3(0.1, 0.1, 0.1)
+mesh = ExtResource("1_16aql")
+damage = 0.0

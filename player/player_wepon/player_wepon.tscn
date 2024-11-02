@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cchojakcivxdf"]
+
+[ext_resource type="Script" path="res://player/player_wepon/player_wepon.gd" id="1_qbu1w"]
+[ext_resource type="Resource" uid="uid://ce8h13imie1qp" path="res://wepons/resources/stick_wepon.tres" id="2_ut118"]
+
+[node name="PlayerWepon" type="Node3D"]
+script = ExtResource("1_qbu1w")
+WEPON_TYPE = ExtResource("2_ut118")
+
+[node name="WeponMesh" type="MeshInstance3D" parent="."]
