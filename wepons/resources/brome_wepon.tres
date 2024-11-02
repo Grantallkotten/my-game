@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Wepons" load_steps=3 format=3 uid="uid://kjnmpx2befvi"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2rbc120w2d3v" path="res://wepons/meshes/brome.res" id="1_mu7ra"]
+[ext_resource type="Script" path="res://wepons/wepon_resource.gd" id="2_oavna"]
+
+[resource]
+script = ExtResource("2_oavna")
+name = "Brome"
+position = Vector3(0.6, 1.2, 1)
+rotation = Vector3(0, 90, 0)
+scale = Vector3(0.5, 0.5, 0.5)
+mesh = ExtResource("1_mu7ra")
+damage = 0.0
