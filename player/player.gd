@@ -15,6 +15,7 @@ extends CharacterBody3D
 @export var walk_acceleration: float = 20.0
 @export var jump_strength: float = 20.0
 @export var gravity: float = 90.0
+@export var mesh_rotation_speed: float = 12.0
 
 var camera_input_dirction: Vector2 = Vector2.ZERO
 var last_movment_direction: Vector3 = Vector3.BACK
@@ -60,15 +61,16 @@ func _player_movment(delta: float) -> void:
 	movment_direction.x = Input.get_axis("move_left", "move_right")
 	movment_direction.z = Input.get_axis("move_forward", "move_backwards")
 	movment_direction = forward * movment_direction.z + right * movment_direction.x
+	movment_direction.y = 0.0
 	movment_direction = movment_direction.normalized()
 	
 
 	velocity = velocity.move_toward(movment_direction * walk_speed, walk_acceleration * delta)
 	
-	if movment_direction.length() > 0.2:
+	if movment_direction.length() > 0.0:
 		last_movment_direction = movment_direction
 	var target_angle: float = Vector3.BACK.signed_angle_to(last_movment_direction, Vector3.UP)
-	player_mesh.rotation.y = target_angle
+	player_mesh.global_rotation.y = lerp_angle(player_mesh.rotation.y, target_angle, mesh_rotation_speed * delta)
 	
 	var is_about_to_jump = Input.is_action_just_pressed("jump") and is_on_floor()
 	if is_about_to_jump:
