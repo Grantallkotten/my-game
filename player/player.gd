@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var position_label: Label = $HUD/HUDArea/PositionLabel
 @onready var fps_label: Label = $HUD/HUDArea/FPSLabel
 
+@onready var player_mesh: MeshInstance3D = $PlayerMesh
 
 @onready var camera: Camera3D = $CameraPivot/PitchPivot/Camera3D
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -16,6 +17,7 @@ extends CharacterBody3D
 @export var gravity: float = 90.0
 
 var camera_input_dirction: Vector2 = Vector2.ZERO
+var last_movment_direction: Vector3 = Vector3.BACK
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -62,6 +64,11 @@ func _player_movment(delta: float) -> void:
 	
 
 	velocity = velocity.move_toward(movment_direction * walk_speed, walk_acceleration * delta)
+	
+	if movment_direction.length() > 0.2:
+		last_movment_direction = movment_direction
+	var target_angle: float = Vector3.BACK.signed_angle_to(last_movment_direction, Vector3.UP)
+	player_mesh.rotation.y = target_angle
 	
 	var is_about_to_jump = Input.is_action_just_pressed("jump") and is_on_floor()
 	if is_about_to_jump:
