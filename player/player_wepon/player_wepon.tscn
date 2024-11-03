@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://player/player_wepon/player_wepon.gd" id="1_qbu1w"]
 [ext_resource type="Resource" uid="uid://ce8h13imie1qp" path="res://wepons/resources/stick_wepon.tres" id="2_ut118"]
-[ext_resource type="ArrayMesh" uid="uid://b8ushk8p7dev7" path="res://wepons/meshes/stick.res" id="3_0p5lw"]
+[ext_resource type="ArrayMesh" uid="uid://b8ushk8p7dev7" path="res://wepons/meshes/stick.res" id="3_qtj4q"]
 
 [node name="PlayerWepon" type="Node3D"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.7, 0.2, 1)
+transform = Transform3D(1, 0, 9.18967e-32, 0, 1, 0, -9.18967e-32, 0, 1, -0.0999999, 0, 0)
 script = ExtResource("1_qbu1w")
 WEPON_TYPE = ExtResource("2_ut118")
 
 [node name="WeponMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = ExtResource("3_0p5lw")
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = ExtResource("3_qtj4q")

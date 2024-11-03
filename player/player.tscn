@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://biqw058ei5kai"]
+[gd_scene load_steps=10 format=3 uid="uid://biqw058ei5kai"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_gdt4l"]
 [ext_resource type="PackedScene" uid="uid://cchojakcivxdf" path="res://player/player_wepon/player_wepon.tscn" id="2_5u0em"]
@@ -11,15 +11,108 @@ albedo_color = Color(0.629601, 0.257962, 0.130325, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7r8a2"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
+[sub_resource type="Animation" id="Animation_cv81t"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerMesh/WeponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.366667),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(-0.45, 0.2, 0.7), Vector3(-0.661705, 0.2, 0.83099), Vector3(0.629636, 0.2, 0.926754)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerMesh/WeponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.366667),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.22173, -0.279253, 0), Vector3(1.22173, 0.644027, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5trp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerMesh/WeponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.45, 0.2, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerMesh/WeponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8n8sa"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerMesh/WeponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(-0.45, 0.2, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerMesh/WeponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7bfg"]
+_data = {
+"RESET": SubResource("Animation_5trp3"),
+"attack": SubResource("Animation_cv81t"),
+"idle": SubResource("Animation_8n8sa")
+}
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_gdt4l")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00829965, -5.96046e-08, 0.000129938)
 mesh = SubResource("CapsuleMesh_3bcdp")
 surface_material_override/0 = SubResource("StandardMaterial3D_ph5yk")
 
-[node name="PlayerWepon" parent="PlayerMesh" instance=ExtResource("2_5u0em")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.7, 0.2, 1)
+[node name="WeponPivot" type="Node3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.2, 0.7)
+
+[node name="PlayerWepon" parent="PlayerMesh/WeponPivot" instance=ExtResource("2_5u0em")]
+transform = Transform3D(-4.37114e-08, -1, 5.60519e-45, 1, -4.37114e-08, 0, 0, 5.60519e-45, 1, -0.1, 0.499929, 0)
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_7r8a2")
@@ -60,3 +153,11 @@ offset_left = -207.0
 offset_bottom = 74.0
 grow_horizontal = 0
 horizontal_alignment = 2
+
+[node name="WeponAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r7bfg")
+}
+playback_default_blend_time = 0.1
+
+[connection signal="animation_finished" from="WeponAnimationPlayer" to="." method="_on_wepon_animation_player_animation_finished"]

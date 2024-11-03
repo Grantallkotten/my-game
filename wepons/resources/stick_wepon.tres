@@ -6,8 +6,15 @@
 [resource]
 script = ExtResource("1_i1ln1")
 name = "Stick"
-position = Vector3(-0.7, 0.2, 1)
-rotation = Vector3(0, 270, 0)
+position = Vector3(-0.1, 0.5, 0)
+rotation = Vector3(0, 0, 90)
 scale = Vector3(0.1, 0.1, 0.1)
+sway_min = Vector2(-20, -20)
+sway_max = Vector2(20, 20)
+sway_speed_position = 0.07
+sway_speed_rotation = 0.1
+sway_amount_position = 0.1
+sway_amount_rotation = 30.0
 mesh = ExtResource("1_16aql")
+shadow = true
 damage = 0.0

@@ -17,6 +17,8 @@ extends CharacterBody3D
 @export var gravity: float = 90.0
 @export var mesh_rotation_speed: float = 12.0
 
+@onready var wepon_animation_player: AnimationPlayer = $WeponAnimationPlayer
+
 var camera_input_dirction: Vector2 = Vector2.ZERO
 var last_movment_direction: Vector3 = Vector3.BACK
 
@@ -51,6 +53,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("restart"):
 		restart_scene()
+	
+	if Input.is_action_just_pressed("attack"):
+		attack()
 
 func _player_movment(delta: float) -> void:
 	var movment_direction: Vector3 = Vector3.ZERO
@@ -85,6 +90,15 @@ func _apply_gravity(delta: float) -> void:
 func restart_scene():
 	get_tree().reload_current_scene()
 
+func attack() -> void:
+	wepon_animation_player.play("attack")
+
 func _set_hud(delta) -> void:
 	position_label.text = str(round(position.x * 100)/100.0) + ", " + str(round(position.y * 100)/100.0) + ", " + str(round(position.z * 100)/100.0)
 	fps_label.text = str(round(1/delta)) + " fps"
+
+
+func _on_wepon_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "attack":
+		wepon_animation_player.play("idle")
+		
