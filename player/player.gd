@@ -18,6 +18,7 @@ extends CharacterBody3D
 @export var mesh_rotation_speed: float = 12.0
 
 @onready var wepon_animation_player: AnimationPlayer = $WeponAnimationPlayer
+@onready var wepon_hitbox: Area3D = $PlayerMesh/WeponPivot/PlayerWepon/WeponMesh/WeponHitbox
 
 var camera_input_dirction: Vector2 = Vector2.ZERO
 var last_movment_direction: Vector3 = Vector3.BACK
@@ -92,6 +93,8 @@ func restart_scene():
 
 func attack() -> void:
 	wepon_animation_player.play("attack")
+	if wepon_hitbox:
+		wepon_hitbox.monitoring = true
 
 func _set_hud(delta) -> void:
 	position_label.text = str(round(position.x * 100)/100.0) + ", " + str(round(position.y * 100)/100.0) + ", " + str(round(position.z * 100)/100.0)
@@ -101,4 +104,5 @@ func _set_hud(delta) -> void:
 func _on_wepon_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		wepon_animation_player.play("idle")
-		
+		if wepon_hitbox:
+			wepon_hitbox.monitoring = false
