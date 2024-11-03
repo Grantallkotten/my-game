@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_i1ln1")
 name = "Stick"
-position = Vector3(0.8, 0.2, 1)
+position = Vector3(-0.7, 0.2, 1)
 rotation = Vector3(0, 270, 0)
 scale = Vector3(0.1, 0.1, 0.1)
 mesh = ExtResource("1_16aql")

@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_oavna")
 name = "Brome"
-position = Vector3(0.6, 1.2, 1)
-rotation = Vector3(0, 90, 0)
+position = Vector3(-0.6, 2, 0)
+rotation = Vector3(0, 0, 0)
 scale = Vector3(0.5, 0.5, 0.5)
 mesh = ExtResource("1_mu7ra")
 damage = 0.0

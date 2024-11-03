@@ -12,6 +12,8 @@ var dummy_bool: bool = false
 
 @onready var wepon_mesh: MeshInstance3D = $WeponMesh
 
+var mouse_movment: Vector2
+
 func _ready() -> void:
 	load_wepon()
 
@@ -24,10 +26,30 @@ func load_wepon() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_movment = event.relative
+	
 	if event.is_action_pressed("swap"):
-		if dummy_bool:
-			WEPON_TYPE = load("res://wepons/resources/stick_wepon.tres")
-		else:
-			WEPON_TYPE = load("res://wepons/resources/brome_wepon.tres")
-		load_wepon()
-		dummy_bool = !dummy_bool
+		temp_func_swap_wepons()
+
+func sway_wepon(delta) -> void:
+	mouse_movment = mouse_movment.clamp(WEPON_TYPE.sway_min, WEPON_TYPE.sway_max)
+	
+	# Lerp wepon poition based on mouse movment
+	position.x = lerp(position.x, WEPON_TYPE.position.x - (mouse_movment.x * WEPON_TYPE.sway_amount_position) * delta, WEPON_TYPE.sway_speed_position)
+	position.y = lerp(position.y, WEPON_TYPE.position.y - (mouse_movment.y * WEPON_TYPE.sway_amount_position) * delta, WEPON_TYPE.sway_speed_position)
+
+	# Lerp wepon rotation based on mouse movment
+	rotation_degrees.x = lerp(rotation_degrees.x, WEPON_TYPE.rotation.x - (mouse_movment.x * WEPON_TYPE.sway_amount_rotation) * delta, WEPON_TYPE.sway_speed_rotation)
+	rotation_degrees.y = lerp(rotation_degrees.y, WEPON_TYPE.rotation.y - (mouse_movment.y * WEPON_TYPE.sway_amount_rotation) * delta, WEPON_TYPE.sway_speed_rotation)
+
+func _physics_process(delta: float) -> void:
+	sway_wepon(delta)
+
+func temp_func_swap_wepons() -> void:
+	if dummy_bool:
+		WEPON_TYPE = load("res://wepons/resources/stick_wepon.tres")
+	else:
+		WEPON_TYPE = load("res://wepons/resources/brome_wepon.tres")
+	load_wepon()
+	dummy_bool = !dummy_bool
