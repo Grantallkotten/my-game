@@ -1,7 +1,7 @@
 @tool
 extends Node3D
 
-var dummy_bool: bool = false
+var dummy_int: int = 0
 
 @export var WEPON_TYPE: Wepons:
 	set(value):
@@ -58,14 +58,18 @@ func _on_wepon_hitbox_body_entered(body: Node3D) -> void:
 
 
 func temp_func_swap_wepons() -> void:
-	if dummy_bool:
-		WEPON_TYPE = load("res://wepons/resources/stick_wepon.tres")
-	else:
-		WEPON_TYPE = load("res://wepons/resources/brome_wepon.tres")
+	var dummy_max = 2
+	match dummy_int:
+		0:
+			WEPON_TYPE = load("res://wepons/resources/stick_wepon.tres")
+		1: 
+			WEPON_TYPE = load("res://wepons/resources/brome_wepon.tres")
+		2:
+			WEPON_TYPE = load("res://wepons/resources/hammer_wepon.tres")
 	load_wepon()
-	dummy_bool = !dummy_bool
-	print("Swap")
-
+	dummy_int += 1
+	if dummy_int > dummy_max:
+		dummy_int = 0
 
 func set_mesh_color_on_hit(mesh_instance: MeshInstance3D) -> void:
 	if mesh_instance:
